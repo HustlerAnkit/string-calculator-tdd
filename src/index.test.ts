@@ -20,7 +20,13 @@ test("handle line breaker and comma as a string separator", () => {
   expect(add("1\n2\n3,4")).toBe(10);
 });
 
-// test("should throw exception  for negative number", () => {
-//   expect(() => add("-2")).toThrow("negative numbers not allowed: -2");
-//   expect(() => add("1,-1,3,-5")).toThrow("negative numbers not allowed: -1,-5");
-// });
+test("handle custom separator", () => {
+  expect(add("//|\n1|2|3")).toBe(6);
+  expect(add("//:\n1:2:3:4:5")).toBe(15);
+  expect(add("//-\n1-2-3-4-5-6")).toBe(21);
+});
+
+test("should throw exception  for negative number", () => {
+  expect(() => add("-2")).toThrow("negative numbers not allowed: -2");
+  expect(() => add("1,-1,3,-5")).toThrow("negative numbers not allowed: -1,-5");
+});
