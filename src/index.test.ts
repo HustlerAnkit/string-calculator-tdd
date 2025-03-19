@@ -14,3 +14,8 @@ test("numbers separated by comma should return sum", () => {
   expect(add("1,2")).toBe(3);
   expect(add("1,2,3")).toBe(6);
 });
+
+test("should throw exception  for negative number", () => {
+  expect(() => add("-2")).toThrow("negative numbers not allowed: -2");
+  expect(() => add("1,-1,3,-5")).toThrow("negative numbers not allowed: -1,-5");
+});
