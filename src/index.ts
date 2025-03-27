@@ -11,9 +11,9 @@ export function add(numbers: string): number {
     numbers = parts[1];
   }
 
-  const allNumbers = numbers.split(separator);
+  const allNumbers: string[] = numbers.split(separator);
 
-  const invalidChar = allNumbers.filter((n) => isNaN(+n));
+  const invalidChar: string[] = allNumbers.filter((n: string) => isNaN(+n));
 
   if (invalidChar.length > 0) {
     throw new Error(
@@ -21,10 +21,13 @@ export function add(numbers: string): number {
     );
   }
 
-  const negatives = allNumbers.filter((n) => +n < 0);
+  const negatives: string[] = allNumbers.filter((n: string) => +n < 0);
   if (negatives.length > 0) {
     throw new Error(`negative numbers are not allowed: ${negatives.join(",")}`);
   }
 
-  return allNumbers.reduce((sum, number) => sum + +number, 0);
+  return allNumbers.reduce(
+    (sum: number, number: string) => sum + Number(number),
+    0
+  );
 }
