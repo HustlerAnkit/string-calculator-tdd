@@ -27,6 +27,8 @@ test("handle custom separator", () => {
 });
 
 test("should throw exception  for negative number", () => {
-  expect(() => add("-2")).toThrow("negative numbers not allowed: -2");
-  expect(() => add("1,-1,3,-5")).toThrow("negative numbers not allowed: -1,-5");
+  expect(() => add("-2")).toThrow("negative numbers are not allowed: -2");
+  expect(() => add("1,-1,3,-5")).toThrow(
+    "negative numbers are not allowed: -1,-5"
+  );
 });
