@@ -11,15 +11,27 @@ export function add(numbers: string): number {
     numbers = parts[1];
   }
 
-  const allNumbers = numbers
-    .split(separator)
-    .map((number) => parseInt(number, 10));
-  console.log(allNumbers);
+  const allNumbers = numbers.split(separator).map((number) => number);
 
-  const negatives = allNumbers.filter((n) => n < 0);
+  // console.log(allNumbers);
+  const invalidChar = allNumbers.filter((n) => isNaN(+n));
+  // console.log(invalidChar);
+  // return 1;
+
+  if (invalidChar.length > 0) {
+    throw new Error(
+      `invalid numbers are encountered: ${invalidChar.join(",")}`
+    );
+  }
+  // const validNumbers = allNumbers.filter((n) => !isNaN(+n));
+  // console.log(validNumbers);
+  // return 1;
+  const negatives = allNumbers.filter((n) => +n < 0);
   if (negatives.length > 0) {
     throw new Error(`negative numbers are not allowed: ${negatives.join(",")}`);
   }
 
-  return allNumbers.reduce((sum, number) => sum + number, 0);
+  return allNumbers.reduce((sum, number) => sum + +number, 0);
 }
+
+// console.log(add("1,2,-3,4"));
