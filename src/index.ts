@@ -11,7 +11,7 @@ export function add(numbers: string): number {
     numbers = parts[1];
   }
 
-  const allNumbers = numbers.split(separator).map((number) => number);
+  const allNumbers = numbers.split(separator);
 
   const invalidChar = allNumbers.filter((n) => isNaN(+n));
 
